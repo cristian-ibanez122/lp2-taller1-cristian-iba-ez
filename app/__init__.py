@@ -13,10 +13,15 @@ def create_app():
     """Crea y configura la instancia de la aplicación Flask."""
     app = Flask(__name__)
 
-    # TODO 1: Importar el Blueprint 'main' desde app/routes.py
-    # from .routes import main
+    from flask import Flask
 
-    # TODO 2: Registrar el blueprint en la aplicación
-    # app.register_blueprint(main)
+def create_app():
+    app = Flask(__name__)
+
+    from .routes import main
+
+    app.register_blueprint(main)
 
     return app
+
+    

@@ -29,7 +29,9 @@ def cargar_productos():
             lista de diccionarios de Python
     TODO 3: Retornar esa lista
     """
-    pass  # <-- reemplaza esta línea por tu implementación
+    with open(RUTA_PRODUCTOS, "r", encoding="utf-8") as archivo:
+     productos = json.load(archivo)
+    return productos
 
 
 def buscar_producto_por_sku(sku):
@@ -42,7 +44,12 @@ def buscar_producto_por_sku(sku):
     TODO 4: Si terminas de recorrer la lista y no lo encontraste,
             retornar None
     """
-    pass  # <-- reemplaza esta línea por tu implementación
+    productos = cargar_productos()
+
+    for producto in productos:
+        if producto["sku"] == sku:
+            return producto
+    return None
 
 
 @main.route("/")
@@ -53,7 +60,7 @@ def index():
     # TODO: renderizar el template "index.html" pasándole la lista de
     # productos con el nombre de variable que vayas a usar en el HTML
     # Pista: return render_template("index.html", productos=productos)
-    pass
+    return render_template("index.html", productos=productos)
 
 
 @main.route("/producto/<sku>")
@@ -65,4 +72,6 @@ def detalle(sku):
     #         abort(404) para responder con un error "No encontrado"
     # TODO 2: Si el producto existe, renderiza "detalle.html"
     #         pasándole el producto encontrado
-    pass
+    if producto is None:
+        abort(404) 
+    return render_template("detalle.html", producto=producto)

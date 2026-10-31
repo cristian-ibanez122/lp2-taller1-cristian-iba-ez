@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}Tienda Virtual{% endblock %}</title>
+    <title>{% block titulo %}Urban Style{% endblock %}</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <header>
-        <h1><a href="{{ url_for('main.index') }}" style="color:white; text-decoration:none;">Mi Tienda Virtual</a></h1>
-    </header>
 
-    <main>
-        {% block contenido %}
-        {% endblock %}
-    </main>
+<body>
+
+<header>
+    <h1>Urban Style</h1>
+    <p>Moda urbana para todos</p>
+</header>
+
+<main>
+    {% block contenido %}
+    {% endblock %}
+</main>
+
 </body>
 </html>
+
